@@ -1,11 +1,17 @@
 import React from 'react';
-import { Text, StyleSheet, Platform } from 'react-native';
+import { Text, StyleSheet, Platform, SafeAreaView } from 'react-native';
 
-const Header = () => <Text style={styles.encabezado}>Criptomonedas</Text>;
+const Header = () => {
+    return (
+        <SafeAreaView style={styles.contenedor}>
+            <Text style={styles.encabezado}>Criptomonedas</Text>
+        </SafeAreaView>
+    )
+};
 
 const styles = StyleSheet.create({
     encabezado: {
-        paddingTop: Platform.OS === 'ios' ? 50 : 10,
+        paddingTop: Platform.OS === 'ios' ? 50 : 40,
         fontFamily: 'Lato-Black',
         backgroundColor: '#0077b6',
         paddingBottom: 10,
