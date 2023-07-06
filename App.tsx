@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet,
   Image,
   View,
   ScrollView,
@@ -10,27 +9,28 @@ import axios from 'axios';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Cotizacion from './components/Cotizacion';
+import { styles } from './AppStyles';
 
-const App = () => {
-  const [moneda, guardarMoneda] = useState('');
-  const [criptomoneda, guardarCriptomoneda] = useState('');
-  const [consultarAPI, guardarConsultarAPI] = useState(false);
-  const [resultado, guardarResultado] = useState({});
-  const [cargando, guardarCargando] = useState(false);
+const App: React.FC = () => {
+  const [moneda, guardarMoneda] = useState<string>('');
+  const [criptomoneda, guardarCriptomoneda] = useState<string>('');
+  const [consultarAPI, guardarConsultarAPI] = useState<boolean>(false);
+  const [resultado, guardarResultado] = useState<any>({});
+  const [cargando, guardarCargando] = useState<boolean>(false);
 
   useEffect(() => {
     const cotizarCriptomoneda = async () => {
       if (consultarAPI) {
         // consultar la api para obtener la cotización
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
-        const resultado = await axios.get(url);
+        const response = await axios.get(url);
 
-        // console.log(resultado.data.DISPLAY[criptomoneda][moneda] );
+        // console.log(response.data.DISPLAY[criptomoneda][moneda] );
         guardarCargando(true);
 
         // Ocultar el spinner y mostrar el resultado
         setTimeout(() => {
-          guardarResultado(resultado.data.DISPLAY[criptomoneda][moneda]);
+          guardarResultado(response.data.DISPLAY[criptomoneda][moneda]);
           guardarConsultarAPI(false);
           guardarCargando(false);
         }, 3000);
@@ -70,16 +70,5 @@ const App = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  imagen: {
-    width: '100%',
-    height: 150,
-    marginHorizontal: '2.5%',
-  },
-  contenido: {
-    marginHorizontal: '2.5%',
-  },
-});
 
 export default App;
