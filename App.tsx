@@ -5,14 +5,15 @@ import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Cotizacion from './components/Cotizacion';
 import { styles } from './AppStyles';
-import sharedStateStore from './store/sharedStateStore';
+import store from './store/sharedStateStore';
 
 const App: React.FC = observer(() => {
+
   useEffect(() => {
-    sharedStateStore.cotizarCriptomoneda();
+    store.cotizarCriptomoneda();
   }, []);
 
-  const componente = sharedStateStore.cargando ? (
+  const componente = store.cargando ? (
     <ActivityIndicator size="large" color="#0077b6" />
   ) : (
     <Cotizacion />

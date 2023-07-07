@@ -3,20 +3,21 @@ import { Text, View, TouchableHighlight, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { observer } from 'mobx-react';
 import { styles } from './FormulatioStyles';
-import sharedStateStore from '../store/sharedStateStore';
+import store from '../store/sharedStateStore';
 
 const Formulario: React.FC = observer(() => {
+
   useEffect(() => {
-    sharedStateStore.fetchCriptomonedas();
+    store.fetchCriptomonedas();
   }, []);
 
   const cotizarPrecio = () => {
-    if (sharedStateStore.moneda.trim() === '' || sharedStateStore.criptomoneda.trim() === '') {
+    if (store.moneda.trim() === '' || store.criptomoneda.trim() === '') {
       mostrarAlerta();
       return;
     }
 
-    sharedStateStore.cotizarCriptomoneda();
+    store.cotizarCriptomoneda();
   };
 
   const mostrarAlerta = () => {
@@ -27,8 +28,8 @@ const Formulario: React.FC = observer(() => {
     <View>
       <Text style={styles.label}>Moneda</Text>
       <Picker
-        selectedValue={sharedStateStore.moneda}
-        onValueChange={(moneda) => sharedStateStore.setMoneda(moneda)}
+        selectedValue={store.moneda}
+        onValueChange={(moneda) => store.setMoneda(moneda)}
         itemStyle={{ height: 120 }}
       >
         <Picker.Item label="- Seleccione -" value="" />
@@ -40,12 +41,12 @@ const Formulario: React.FC = observer(() => {
 
       <Text style={styles.label}>Criptomoneda</Text>
       <Picker
-        selectedValue={sharedStateStore.criptomoneda}
-        onValueChange={(cripto) => sharedStateStore.setCriptomoneda(cripto)}
+        selectedValue={store.criptomoneda}
+        onValueChange={(cripto) => store.setCriptomoneda(cripto)}
         itemStyle={{ height: 120 }}
       >
         <Picker.Item label="- Seleccione -" value="" />
-        {sharedStateStore.criptomonedas.map((cripto) => (
+        {store.criptomonedas.map((cripto) => (
           <Picker.Item
             key={cripto.CoinInfo.Id}
             label={cripto.CoinInfo.FullName}
