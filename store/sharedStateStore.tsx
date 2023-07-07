@@ -45,26 +45,33 @@ class SharedStateStore {
   async fetchCriptomonedas(): Promise<void> {
     const url =
       'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD';
-    const response = await axios.get(url);
-    const { Data } = response.data;
-
-    runInAction(() => {
-      this.criptomonedas = Data;
-    });
+    await axios.get(url).then(resp => {
+      const { Data } = resp.data;
+      runInAction(() => {
+        this.criptomonedas = Data;
+      });
+    })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   async cotizarCriptomoneda(): Promise<void> {
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${this.criptomoneda}&tsyms=${this.moneda}`;
-    const response = await axios.get(url);
-    const data = response.data.DISPLAY[this.criptomoneda][this.moneda];
-    runInAction(() => {
-      this.setCargando(true);
-      setTimeout(() => {
-        this.setResultado(data);
-        this.setConsultarAPI(false);
-        this.setCargando(false);
-      }, 3000);
-    });
+    await axios.get(url).then(resp => {
+      const data = resp.data.DISPLAY[this.criptomoneda][this.moneda];
+      runInAction(() => {
+        this.setCargando(true);
+        setTimeout(() => {
+          this.setResultado(data);
+          this.setConsultarAPI(false);
+          this.setCargando(false);
+        }, 3000);
+      });
+    })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
 

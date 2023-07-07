@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     label: {
         fontFamily: 'Lato-Black',
-        texttransform: 'uppercase',
+        textTransform: 'uppercase',
         fontSize: 22,
         marginVertical: 20,
     },
