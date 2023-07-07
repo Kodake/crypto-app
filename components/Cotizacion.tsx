@@ -1,10 +1,16 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { styles } from './CotizacionStyles';
-import { CotizacionProps } from '../interfaces/appInterfaces';
+import sharedStateStore from '../store/sharedStateStore';
+import { observer } from 'mobx-react';
 
-const Cotizacion: React.FC<CotizacionProps> = ({ resultado }) => {
-    if (Object.keys(resultado).length === 0) return null;
+const Cotizacion: React.FC = observer(() => {
+    
+    const { resultado } = sharedStateStore;
+
+  if (!resultado) {
+    return null;
+  }
 
     return (
         <View style={styles.resultado}>
@@ -29,6 +35,6 @@ const Cotizacion: React.FC<CotizacionProps> = ({ resultado }) => {
             </Text>
         </View>
     );
-};
+});
 
 export default Cotizacion;
