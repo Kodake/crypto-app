@@ -67,7 +67,6 @@ class SharedStateStore {
     if (this.criptomoneda !== '' && this.moneda !== '') {
       await axios.get(url).then(resp => {
         const data = resp.data.DISPLAY[this.criptomoneda][this.moneda];
-        console.log(data);
 
         runInAction(() => {
           this.setCargando(true);
