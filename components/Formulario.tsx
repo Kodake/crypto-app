@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, TouchableHighlight, Alert } from 'react-native';
+import { Text, View, TouchableHighlight } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { observer } from 'mobx-react';
 import { styles } from './FormulatioStyles';
