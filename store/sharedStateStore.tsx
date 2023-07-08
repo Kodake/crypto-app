@@ -1,14 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 import axios from 'axios';
-import { Criptomoneda } from '../interfaces/appInterfaces';
-
-interface Resultado {
-  PRICE: number;
-  HIGHDAY: number;
-  LOWDAY: number;
-  CHANGEPCT24HOUR: number;
-  LASTUPDATE: string;
-}
+import { Criptomoneda, Resultado } from '../interfaces/appInterfaces';
+import { Alert } from 'react-native';
+import { FORMULARIO_STRINGS } from '../messages/formularioMessages';
 
 class SharedStateStore {
   moneda: string = '';
@@ -40,6 +34,19 @@ class SharedStateStore {
 
   setCargando(cargando: boolean): void {
     this.cargando = cargando;
+  }
+
+  cotizarPrecio = () => {
+    if (this.moneda.trim() === '' || this.criptomoneda.trim() === '') {
+      this.mostrarAlerta();
+      return;
+    }
+
+    this.cotizarCriptomoneda();
+  }
+
+  mostrarAlerta = () => {
+    Alert.alert(`${FORMULARIO_STRINGS.error}`, `${FORMULARIO_STRINGS.required}`, [{ text: `${FORMULARIO_STRINGS.ok}` }]);
   }
 
   async fetchCriptomonedas(): Promise<void> {

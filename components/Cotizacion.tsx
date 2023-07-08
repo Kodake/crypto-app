@@ -3,13 +3,11 @@ import { Text, View } from 'react-native';
 import { styles } from './CotizacionStyles';
 import store from '../store/sharedStateStore';
 import { observer } from 'mobx-react';
+import { COTIZACION_STRINGS } from '../messages/cotizacionMessages';
 
 const Cotizacion: React.FC = observer(() => {
 
-
-    if (!store.resultado) {
-        return null;
-    }
+    if (!store.resultado) return null;
 
     return (
         <View style={styles.resultado}>
@@ -17,19 +15,19 @@ const Cotizacion: React.FC = observer(() => {
                 <Text style={styles.span}>{store.resultado.PRICE} </Text>
             </Text>
             <Text style={styles.texto}>
-                Precio más alto del día:{' '}
+                {COTIZACION_STRINGS.highPrice}
                 <Text style={styles.span}> {store.resultado.HIGHDAY} </Text>
             </Text>
             <Text style={styles.texto}>
-                Precio más bajo del día:{' '}
+                {COTIZACION_STRINGS.lowPrice}
                 <Text style={styles.span}> {store.resultado.LOWDAY} </Text>
             </Text>
             <Text style={styles.texto}>
-                Variación últimas 24 horas:{' '}
+                {COTIZACION_STRINGS.lastDay}
                 <Text style={styles.span}> {store.resultado.CHANGEPCT24HOUR} % </Text>
             </Text>
             <Text style={styles.texto}>
-                Última Actualización:{' '}
+                {COTIZACION_STRINGS.lastUpdate}
                 <Text style={styles.span}> {store.resultado.LASTUPDATE} </Text>
             </Text>
         </View>

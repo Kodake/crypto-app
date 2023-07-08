@@ -24,6 +24,14 @@ export interface Criptomoneda {
     };
 }
 
+export interface Resultado {
+    PRICE: number;
+    HIGHDAY: number;
+    LOWDAY: number;
+    CHANGEPCT24HOUR: number;
+    LASTUPDATE: string;
+}
+
 export interface CotizacionResponse {
     DISPLAY: {
         [criptomoneda: string]: {
