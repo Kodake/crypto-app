@@ -53,7 +53,6 @@ export interface SharedStateStore {
     resultado: any;
     cargando: boolean;
     criptomonedas: Criptomoneda[];
-
     setMoneda(moneda: string): void;
     setCriptomoneda(criptomoneda: string): void;
     setConsultarAPI(consultarAPI: boolean): void;
