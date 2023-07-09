@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { styles } from './CotizacionStyles';
 import store from '../store/sharedStateStore';
 import { observer } from 'mobx-react';
-import { COTIZACION_STRINGS } from '../messages/cotizacionMessages';
+import { COTIZACION_STRINGS } from '../messages/appMessages';
 
 const Cotizacion: React.FC = observer(() => {
 

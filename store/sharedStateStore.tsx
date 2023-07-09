@@ -2,7 +2,7 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import axios from 'axios';
 import { Criptomoneda, Resultado } from '../interfaces/appInterfaces';
 import { Alert } from 'react-native';
-import { FORMULARIO_STRINGS } from '../messages/formularioMessages';
+import { FORMULARIO_STRINGS } from '../messages/appMessages';
 
 class SharedStateStore {
   moneda: string = '';

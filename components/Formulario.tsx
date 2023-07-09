@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 import { observer } from 'mobx-react';
 import { styles } from './FormulatioStyles';
 import store from '../store/sharedStateStore';
-import { FORMULARIO_STRINGS } from '../messages/formularioMessages';
+import { FORMULARIO_STRINGS } from '../messages/appMessages';
 
 const Formulario: React.FC = observer(() => {
 
