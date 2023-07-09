@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.frontend"
+    namespace "com.crypto_app"
     defaultConfig {
-        applicationId "com.frontend"
+        applicationId "com.crypto_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
